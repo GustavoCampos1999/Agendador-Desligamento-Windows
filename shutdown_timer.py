@@ -4,6 +4,14 @@ import os
 import threading
 import time
 from datetime import datetime, timedelta
+import sys 
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 app_data_path = os.getenv('APPDATA')
 app_folder = os.path.join(app_data_path, 'AgendadorDesligamento')
@@ -112,6 +120,8 @@ def verificar_estado_ao_iniciar():
 
 janela = tk.Tk()
 janela.title("Agendador de Desligamento")
+janela.iconbitmap(resource_path('icone.ico'))
+
 janela.geometry("450x350") 
 janela.resizable(False, False)
 frame_principal = tk.Frame(janela, padx=20, pady=20)
